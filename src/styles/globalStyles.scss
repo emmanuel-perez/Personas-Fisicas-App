@@ -1,0 +1,123 @@
+//  COLOR VARIABLES
+$dark-blue: '';
+
+
+
+
+
+
+
+.auth-button {
+    padding: 10px 20px; // Add padding for size and spacing
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(15, 15, 15);
+    border: none;
+    color: white;
+    font-weight: 600;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103);
+    position: relative;
+    overflow: hidden;
+    transition-duration: 0.3s;
+    border-radius: 25px; // Rounded corners
+    z-index: 1;
+
+    .svgIcon {
+        width: 16px;
+
+        path {
+            fill: white;
+            transition: fill 0.3s;
+        }
+    }
+
+    &::before {
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        content: "";
+        background-color: black;
+        border-radius: 50%;
+        left: -100%;
+        top: -50%;
+        transition-duration: 0.3s;
+        z-index: -1;
+    }
+
+    &:hover {
+        background-color: #1c2a70;
+        color: white;
+
+        .svgIcon path {
+            fill: black;
+        }
+
+        &::before {
+            background-color: white;
+            transform: translate(100%, 50%);
+            border-radius: 0;
+        }
+    }
+
+    &:active {
+        transform: translate(5px, 5px);
+        transition-duration: 0.3s;
+    }
+}
+
+.auth-input {
+    // Base styling
+    width: 100%; // Full width
+    margin: 10px 0; // Space between fields
+
+    // Styling the input and label
+    .MuiOutlinedInput-root {
+        fieldset {
+            border-color: black; // Border color for the input field
+        }
+
+        &:hover fieldset {
+            border-color: darken(black, 10%); // Darker border on hover
+        }
+
+        &.Mui-focused fieldset {
+            border-color: black; // Border color when focused
+        }
+
+        input {
+            font-size: 0.8rem;
+            height: 1.5rem;
+            color: black; // Text color
+            padding: 10px; // Padding for the input
+        }
+    }
+
+    .MuiInputLabel-root {
+        font-size: 0.8rem;
+        color: black; // Label color
+
+        &.Mui-focused {
+            color: black; // Label color when focused
+        }
+    }
+
+    .MuiFormHelperText-root {
+        color: grey; // Helper text color
+    }
+}
+
+
+.small-grey-text-button {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: grey;
+
+    &:hover {
+        color: black;
+        transition-duration: 0.3s;
+    }
+}

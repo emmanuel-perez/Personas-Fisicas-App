@@ -9,8 +9,8 @@ export const AppRouter = () => {
         <BrowserRouter>
             {/* <Navbar /> */}
             <Routes location={location} key={location.pathname}>
-                <Route path='/' element={<LoginPage />} />
-                <Route path='/resume' element={<SignUpPage />} />
+                <Route path='/login' element={<LoginPage />} />
+                <Route path='/sign-up' element={<SignUpPage />} />
             </Routes>
         </BrowserRouter>
     )
