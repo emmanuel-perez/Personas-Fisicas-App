@@ -1,4 +1,5 @@
 import axios from "axios";
+import { IPostPersonaFisicaDto } from "../types/PersonaFisicaTypes";
 
 
 export const personasFisicasApi = () => {
@@ -18,7 +19,19 @@ export const personasFisicasApi = () => {
         }
     }
 
+    const addPersonaFisicaRequest = async (newPersonaFisica: IPostPersonaFisicaDto) => {
+        try {
+            const response = await axios.post(`${ personasFisicasApiUrl }/api/personas-fisicas`, newPersonaFisica);
+            console.log('Response:', response.data);
+            return response.data;
+        } catch (error) {
+            console.error('Error during addPersonaFisica:', error);
+            return null;
+        }
+    }
+
     return {
+        addPersonaFisicaRequest,
         getAllPersonasFisicasRequest
     }
 }

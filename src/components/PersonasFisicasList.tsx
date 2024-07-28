@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Modal from '@mui/material/Modal';
 import '../styles/ComponentStyles/PersonasFisicasList.styles.scss';
+import { AddPersonaFisicaModal } from './AddPersonaFisicaModal';
 
 export const PersonasFisicasList = () => {
 
@@ -99,7 +100,7 @@ export const PersonasFisicasList = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={modalStyle}>
-                    <h1>Hola modal persona fisica</h1>
+                    <AddPersonaFisicaModal />
                 </Box>
             </Modal>
         </>
@@ -114,7 +115,8 @@ const modalStyle = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: 'none',
+    borderRadius: '0.5rem',
     boxShadow: 24,
     p: 4,
 };
