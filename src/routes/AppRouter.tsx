@@ -6,19 +6,28 @@ import { ReportsPage } from "../pages/ReportsPage";
 import { PersonasFisicasPage } from "../pages/PersonasFisicasPage";
 import { Navbar } from "../components/Navbar";
 import { UpdatePersonaFisicaPage } from "../pages/UpdatePersonaFisicaPage";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const AppRouter = () => {
+
+    const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+
     return (
         <BrowserRouter>
-        <Navbar />
-            <Navbar />
+            {
+                isAuthenticated ? <Navbar /> : null
+            }
             <Routes location={location} key={location.pathname}>
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/sign-up' element={<SignUpPage />} />
-                <Route path='/reports' element={<ReportsPage />} />
-                <Route path="/personas-fisicas/:id/edit" element={<UpdatePersonaFisicaPage />} />
-                <Route path='/personas-fisicas' element={<PersonasFisicasPage />} />
-            </Routes>
+                {/* Rutas protegidas */}
+                <Route element={<ProtectedRoute />}>
+                    <Route path='/reports' element={<ReportsPage />} />
+                    <Route path="/personas-fisicas/:id/edit" element={<UpdatePersonaFisicaPage />} />
+                    <Route path='/personas-fisicas' element={<PersonasFisicasPage />} />
+                </Route></Routes>
         </BrowserRouter>
     )
 }
