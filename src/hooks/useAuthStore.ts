@@ -16,7 +16,7 @@ export const useAuthStore = () => {
 
         if (response && response.status !== 400) {
             dispatch(onSetJwt(response.data.Data));
-            localStorage.setItem('auth-token', response.data);
+            localStorage.setItem('auth-token', response.data.Data);
             dispatch(onSetIsAuthenticated(true));
         }
         return response;

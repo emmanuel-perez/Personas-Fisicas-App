@@ -1,0 +1,17 @@
+@import '../globalStyles.scss';
+
+.add-persona-fisica-button {
+    align-self: end;
+    background-color: black;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    color: white;
+    margin-right: 5rem;
+    margin-top: 1rem;
+
+    &:hover {
+        background-color: rgb(56, 56, 56);
+        transition-duration: 300ms;
+    }
+}
