@@ -9,12 +9,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import '../styles/ComponentStyles/PersonasFisicasList.styles.scss';
 import { AddPersonaFisicaModal } from './AddPersonaFisicaModal';
 import '../styles/globalStyles.scss'
+import { useNavigate } from 'react-router-dom';
 
 export const PersonasFisicasList = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [selectedPersonaId, setSelectedPersonaId] = useState<string | null>(null);
 
+    const navigate = useNavigate();
     const { getAllPersonasFisicas, deletePersonaFisica } = usePersonasFisicasStore();
     const { personasFisicas } = useSelector((state: RootState) => state.personasFisicas);
 
@@ -66,8 +68,9 @@ export const PersonasFisicasList = () => {
                     </IconButton>
                     <IconButton
                         sx={{ color: '#01376e' }}
-                        onClick={() => handleDelete(params.row.idPersonaFisica)}
+                        onClick={() => navigate(`/personas-fisicas/${ params.row.idPersonaFisica }/edit`)}
                     >
+                    
                         <EditIcon />
                     </IconButton>
                 </Box>

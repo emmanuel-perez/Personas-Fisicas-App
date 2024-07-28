@@ -2,13 +2,20 @@ import { useDispatch } from "react-redux"
 import { onGetPersonasFisicas } from "../features/personasFisicasSlice";
 import { personasFisicasApi } from "../api/personasFisicasApi";
 import { IPostPersonaFisicaDto } from "../types/PersonaFisicaTypes";
+import { useNavigate } from "react-router-dom";
 
 
 export const usePersonasFisicasStore = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const { getAllPersonasFisicasRequest, addPersonaFisicaRequest, deletePersonaFisicaRequest } = personasFisicasApi();
+    const { 
+        getAllPersonasFisicasRequest, 
+        addPersonaFisicaRequest, 
+        deletePersonaFisicaRequest,
+        updatePersonaFisicaRequest
+    } = personasFisicasApi();
 
     const getAllPersonasFisicas = async () => {
         const response = await getAllPersonasFisicasRequest();
@@ -38,9 +45,18 @@ export const usePersonasFisicasStore = () => {
         return response;
     }
 
+    const updatePersonaFisica = async (idPersonaFisica: string, updatedPersonaFisica: Partial<IPostPersonaFisicaDto>) => {
+        const response = await updatePersonaFisicaRequest(idPersonaFisica, updatedPersonaFisica);
+        if (response && response.status !== 400) {
+            navigate('/personas-fisicas')
+        }
+        return response;
+      }
+
     return {
         addPersonaFisica,
         deletePersonaFisica,
         getAllPersonasFisicas,
+        updatePersonaFisica,
     }
 }

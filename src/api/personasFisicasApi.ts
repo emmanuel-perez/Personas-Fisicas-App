@@ -40,9 +40,21 @@ export const personasFisicasApi = () => {
         }
     }
 
+    const updatePersonaFisicaRequest = async (idPersonaFisica: string, updatedPersonaFisica: Partial<IPostPersonaFisicaDto>) => {
+        try {
+            const response = await axios.put(`${personasFisicasApiUrl}/api/personas-fisicas/${idPersonaFisica}`, updatedPersonaFisica);
+            console.log('Response:', response.data);
+            return response;
+        } catch (error) {
+            console.error('Error during updatePersonaFisica:', error);
+            return null;
+        }
+    }
+
     return {
         addPersonaFisicaRequest,
         deletePersonaFisicaRequest,
         getAllPersonasFisicasRequest,
+        updatePersonaFisicaRequest,
     }
 }
