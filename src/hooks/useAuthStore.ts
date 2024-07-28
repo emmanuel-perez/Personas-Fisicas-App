@@ -18,6 +18,7 @@ export const useAuthStore = () => {
             dispatch(onSetJwt(response.data.Data));
             localStorage.setItem('auth-token', response.data.Data);
             dispatch(onSetIsAuthenticated(true));
+            navigate('/personas-fisicas')
         }
         return response;
     }
