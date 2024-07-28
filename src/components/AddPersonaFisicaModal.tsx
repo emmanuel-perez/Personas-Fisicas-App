@@ -15,7 +15,7 @@ export const AddPersonaFisicaModal = () => {
   const [apellidoMaterno, setApellidoMaterno] = useState("");
   const [rfc, setRfc] = useState("");
   const [fechaNacimiento, setFechaNacimiento] = useState("");
-  const [usuarioAgrega, setUsuarioAgrega] = useState(0);  // Assuming user ID is 0 for now
+  const [usuarioAgrega] = useState(0);  // Assuming user ID is 0 for now
 
   const onSubmit = async () => {
     const fechaActual = new Date().toISOString();
@@ -31,11 +31,11 @@ export const AddPersonaFisicaModal = () => {
     };
 
     await addPersonaFisica(newPersonaFisica);
-    navigate('/personas-fisicas');  // Navigate to the list of personas físicas after adding
+    navigate('/personas-fisicas');  
   }
 
   return (
-    <div className='auth-page-container d-flex flex-row vh-100'>
+    <div className='auth-page-container d-flex flex-row vh-60'>
       <div className='background-image-container'></div>
       <div className='form-section-container d-flex flex-column'>
         <div className='form-container d-flex- flex-coulumn'>

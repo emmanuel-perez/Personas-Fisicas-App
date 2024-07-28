@@ -9,8 +9,7 @@ export const personasFisicasApi = () => {
     const getAllPersonasFisicasRequest = async () => {
         try {
             const response = await axios.get(`${ personasFisicasApiUrl }/api/personas-fisicas`);
-
-            console.log('Response:', response.data);
+            // console.log('Response:', response.data);
             return response;
 
         } catch (error) {
