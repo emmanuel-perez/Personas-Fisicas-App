@@ -3,29 +3,35 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { usePersonasFisicasStore } from '../hooks/usePersonasFisicasStore';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Box } from '@mui/material';
-import { IconButton } from '@mui/material';
+import { Box, IconButton, Modal, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import Modal from '@mui/material/Modal';
 import '../styles/ComponentStyles/PersonasFisicasList.styles.scss';
 import { AddPersonaFisicaModal } from './AddPersonaFisicaModal';
 import '../styles/globalStyles.scss'
 
 export const PersonasFisicasList = () => {
-
     const [modalOpen, setModalOpen] = useState(false);
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [selectedPersonaId, setSelectedPersonaId] = useState<string | null>(null);
 
-    const { getAllPersonasFisicas } = usePersonasFisicasStore();
+    const { getAllPersonasFisicas, deletePersonaFisica } = usePersonasFisicasStore();
     const { personasFisicas } = useSelector((state: RootState) => state.personasFisicas);
 
-    const handleDelete = (idPersonaFisica: number) => {
-        console.log(idPersonaFisica)
+    const handleDelete = (idPersonaFisica: string) => {
+        setSelectedPersonaId(idPersonaFisica);
+        setDialogOpen(true);
+    }
+
+    const confirmDelete = async () => {
+        if (selectedPersonaId) {
+            await deletePersonaFisica(selectedPersonaId);
+            setDialogOpen(false);
+        }
     }
 
     useEffect(() => {
         getAllPersonasFisicas();
-
     }, []);
 
     const columns: GridColDef[] = [
@@ -89,9 +95,7 @@ export const PersonasFisicasList = () => {
                 <DataGrid
                     rows={rows}
                     columns={columns}
-                    // pageSize={5}
                     pageSizeOptions={[20]}
-                // checkboxSelection
                 />
             </Box>
             <Modal
@@ -104,6 +108,25 @@ export const PersonasFisicasList = () => {
                     <AddPersonaFisicaModal />
                 </Box>
             </Modal>
+            <Dialog
+                open={dialogOpen}
+                onClose={() => setDialogOpen(false)}
+            >
+                <DialogTitle>{"Confirmar eliminación"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        ¿Estás seguro de que deseas eliminar esta persona física?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setDialogOpen(false)} color="primary">
+                        Cancelar
+                    </Button>
+                    <Button onClick={confirmDelete} color="primary" autoFocus>
+                        Confirmar
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     );
 };

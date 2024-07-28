@@ -8,7 +8,7 @@ export const usePersonasFisicasStore = () => {
 
     const dispatch = useDispatch();
 
-    const { getAllPersonasFisicasRequest, addPersonaFisicaRequest } = personasFisicasApi();
+    const { getAllPersonasFisicasRequest, addPersonaFisicaRequest, deletePersonaFisicaRequest } = personasFisicasApi();
 
     const getAllPersonasFisicas = async () => {
         const response = await getAllPersonasFisicasRequest();
@@ -29,8 +29,18 @@ export const usePersonasFisicasStore = () => {
         return response;
     }
 
+    const deletePersonaFisica = async (idPersonaFisica: string) => {
+        const response = await deletePersonaFisicaRequest(idPersonaFisica);
+        if (response && response.status !== 400) {
+            // dispatch(onGetPersonasFisicas(await getAllPersonasFisicasRequest().data));
+            window.location.reload();
+        }
+        return response;
+    }
+
     return {
         addPersonaFisica,
+        deletePersonaFisica,
         getAllPersonasFisicas,
     }
 }
