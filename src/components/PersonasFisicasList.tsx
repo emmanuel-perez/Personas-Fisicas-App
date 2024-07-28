@@ -10,7 +10,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Modal from '@mui/material/Modal';
 import '../styles/ComponentStyles/PersonasFisicasList.styles.scss';
 import { AddPersonaFisicaModal } from './AddPersonaFisicaModal';
-import { Height } from '@mui/icons-material';
+import '../styles/globalStyles.scss'
 
 export const PersonasFisicasList = () => {
 
@@ -80,7 +80,7 @@ export const PersonasFisicasList = () => {
     return (
         <>
             <button 
-                className='add-persona-fisica-button'
+                className='add-persona-fisica-button auth-button'
                 onClick={()=> setModalOpen(true)}
             >
                 Añadir persona física
