@@ -1,8 +1,10 @@
-# Toka App
+# Personas Físicas App
 
 ## Descripción
 
-Toka App es una aplicación de prueba web hecha con React y Vite. Utiliza TypeScript junto con varias bibliotecas populares como MUI para componentes de interfaz de usuario, Redux Toolkit para la gestión del estado y Axios para las solicitudes HTTP.
+Aplicación de prueba web hecha con React y Vite. Utiliza TypeScript junto con varias bibliotecas populares como MUI para componentes de interfaz de usuario, Redux Toolkit para la gestión del estado y Axios para las solicitudes HTTP.
+
+Esta aplicación se encuentra conectada a un API desarrollado por mi en .NET Core 8.0.
 
 ## Capturas de pantalla
 
